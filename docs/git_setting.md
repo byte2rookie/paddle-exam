@@ -4,3 +4,5 @@
 我们的仓库地址：https://github.com/byte2rookie/paddle-exam
 
 后续可继续修改并提交
+
+将本地修改后的文件夹同步到远程仓库中
