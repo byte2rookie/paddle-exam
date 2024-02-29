@@ -130,10 +130,10 @@ class SegImg:
 
     ##获取矩形扫描，获取矩形
     def get_rectangle_plots(img):
+
         # 讲读入的PIL的img转为array处理
         img_array = np.array(img)
         # 进行轮廓检测
-
         contours, _ = cv.findContours(img_array, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
         plots=[]
         # 遍历所有轮廓
@@ -184,16 +184,25 @@ class SegImg:
         target_path=os.path.join(target_path,"first_img")
         if not os.path.exists(target_path):
             os.makedirs(target_path)
+
         # 依次裁剪并保存矩形
+        crops=[]
         for i, (x, y, w, h) in enumerate(rectangles, start=1):
             # 裁剪图像
             img_array = np.array(src_img)
             cropped_img = img_array[y:y + h, x:x + w]
-            # 保存裁剪后的图像
+            cropped_img_area=w*h
+            #计算原图的面积
+            src_img_area=img_array.shape[0]*img_array.shape[1]
 
-            r_path=os.path.join(target_path,f"croped_img_{i}.jpg")
 
-            cv.imencode('.jpg', cropped_img)[1].tofile(r_path)
+            if cropped_img_area/src_img_area <0.7:
+                # 保存裁剪后的图像,且该图像必须小于原图的70%（防止切片失败）
+                # 裁剪后的所有的图的坐标也要比对，删除相邻相似的嵌套矩形的情况
+
+                r_path=os.path.join(target_path,f"croped_img_{i}.jpg")
+
+                cv.imencode('.jpg', cropped_img)[1].tofile(r_path)
 
 
 

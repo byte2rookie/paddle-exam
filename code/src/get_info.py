@@ -1,15 +1,16 @@
 import os.path
 
-import _utils
-import detect
+from src import _utils
+from src import detect
 import json
-#获取json中的所有txt信息，拼接到一起汇总为txt文件
-class GetInfo:
-    def read_all_txts(json_path,target_path):
+
+
+def read_all_txts(json_path,target_path):
+
             ##args:
             ##json_path:存放第二次处理的json文件的文件夹地址
             ##target_path:存放最终识别出的学生文本的txt文件的存放地址
-
+            ## 获取json中的所有txt信息，拼接到一起汇总为txt文件
 
 
             #获取所有json的路径
@@ -36,7 +37,7 @@ class GetInfo:
 
 
 ##example
-    if __name__=="__main__":
+if __name__=="__main__":
         src_path="D:\\大创\\考试相关数据集\\exam_result\\json_files"
         target_path="D:\\大创\\考试相关数据集\\exam_result\\txt_files"
         read_all_txts(src_path,target_path)
