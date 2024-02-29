@@ -4,15 +4,15 @@ import os
 import cv2 as cv
 import numpy as np
 
-import _utils
+from src import _utils
 from PIL import Image
 from paddleocr import PaddleOCR, draw_ocr
-class detect_interface:
+
 
 
     # Paddleocr目前支持的多语言语种可以通过修改lang参数进行切换
     # 例如`ch`, `en`, `fr`, `german`, `korean`, `japan`
-    def detect_img(img_path,target_path):
+def detect_img(img_path,target_path):
         ## args:
         ## first_processed_path  初次处理的文件夹地址
         ## tar_path              json文件存放的地址
@@ -63,7 +63,8 @@ class detect_interface:
 
 
 #example
-    if __name__ == "__main__":
+if __name__ == "__main__":
         img_path = "D:\\大创\\考试相关数据集\\exam_result\\first_img"
         target_path="D:\\大创\\考试相关数据集\\exam_result\\json_files"
         detect_img(img_path,target_path)
+

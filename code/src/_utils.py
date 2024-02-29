@@ -5,13 +5,7 @@ import numpy as np
 
 def image_loader(img_path):
         """
-        Load images from a specified folder path.
-
-        Args:
-        - src_path (str): The path to the folder containing images.
-
-        Yields:
-        - img (PIL.Image.Image): Image loaded using PIL.
+        读取img_path下的所有图片并yield一个遍历器
         """
         # Ensure the source path is valid
         if not os.path.isdir(img_path):
