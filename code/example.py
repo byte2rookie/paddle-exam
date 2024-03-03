@@ -13,8 +13,8 @@ if __name__=="__main__":
 
 
     #给出图片存放路径和结果存放路径
-    src_path="D:\\大创\\文档\\code\\img\\eg_img"
-    target_path="D:\\大创\\文档\\code\\img\\result"
+    src_path="./img/eg_img"
+    target_path="./img/result"
 
     #forward函数用来对图片进行切割
     forward(src_path=src_path, target_path=target_path, mode="artical")
@@ -23,8 +23,8 @@ if __name__=="__main__":
 #会自动创建一个first_img存放格式为croped_imgxxx的文件夹
 
 #STEP2:读取图片并生成json信息
-    first_imgs_path=target_path+"\\first_img"
-    json_path="D:\\大创\\文档\\code\\img\\result\\jsons"
+    first_imgs_path=target_path+"/first_img"
+    json_path="./img/result/jsons"
     detect_img(first_imgs_path,json_path)
 
 #STEP3:读取json文件然后生成对应的tokens的txt文件
