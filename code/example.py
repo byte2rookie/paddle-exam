@@ -3,6 +3,9 @@ import os
 import src
 from src import seg
 from src.seg_interface import forward
+
+
+
 from src.detect import detect_img
 from src.get_info import read_all_txts
 
@@ -30,4 +33,13 @@ if __name__=="__main__":
 #STEP3:读取json文件然后生成对应的tokens的txt文件
     txt_path=target_path+"/txts"
     read_all_txts(json_path,txt_path)
+
+# 在这里导入 views.py 中的 ask 函数
+from src.views import ask
+
+# 调用 ask 函数
+ask_result = ask(None)  # 传入一个虚拟的 request 对象，因为 ask 函数可能依赖于 request 对象
+
+# 输出文心一言的回答
+print(ask_result)
 
