@@ -7,4 +7,6 @@ seg_interface.py:分割函数的接口api，可直接调用
 detect:将分割图ocr识别并保存为json文件
 get_info:将json文件中的txt项合并保存为txt文件，实现作文文本保存到txt文件中
 
+views.py:文心交互
+
 
