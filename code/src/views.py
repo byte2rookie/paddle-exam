@@ -1,17 +1,18 @@
-from django.shortcuts import render
 import erniebot
 import json
-from django.http import JsonResponse
 
 
-def index(request):
-    return render(request, 'index.html')
+# def index(request):
+#     return render(request, 'index.html')
 
-
-def ask(request):
+#如果只针对想要调用文心一言的话，不需要使用Django包（这个是用来搭后端的，调用不需要用到）
+#这个ask方法是可以正常用了，已经调用成功获取到结果了，不过json解析那里有点问题，你自己可以看看要怎么做
+#如果你内边本地执行不了这个方法的话应该是erniebot这个包没导入。在左下角terminal命令行里面执行命令 pip install erniebot==0.5.0 导入包
+#如果关于调用还有什么问题问我就行
+def ask():
 
     # 从txt文件中读取内容
-    txt_file_path = 'img/result/txts/combined_text.txt'
+    txt_file_path = '../img/result/txts/combined_text.txt'
     with open(txt_file_path, 'r', encoding='utf-8') as file:
         question = file.read()
 
@@ -46,6 +47,8 @@ def ask(request):
     )
     # 获取文心一言的回答
     answer = response.result
+    #这里已经获取到了
+    print(answer)
 
     '''# 解析json
     try:
@@ -74,3 +77,5 @@ def ask(request):
     # 打印解析后的字典
     print(answer_dict)
 
+if __name__=="__main__":
+    ask()
