@@ -6,9 +6,7 @@ import json
 #     return render(request, 'index.html')
 
 #如果只针对想要调用文心一言的话，不需要使用Django包（这个是用来搭后端的，调用不需要用到）
-#这个ask方法是可以正常用了，已经调用成功获取到结果了，不过json解析那里有点问题，你自己可以看看要怎么做
-#如果你内边本地执行不了这个方法的话应该是erniebot这个包没导入。在左下角terminal命令行里面执行命令 pip install erniebot==0.5.0 导入包
-#如果关于调用还有什么问题问我就行
+#这个ask方法是可以正常用了，已经调用成功获取到结果了，不过json解析那里有点问题，
 def ask():
 
     # 从txt文件中读取内容
@@ -24,11 +22,11 @@ def ask():
     # 将文本放在单个消息对象中，用空格分隔不同的文本段落
     message_content = " 以下是一篇高中作文，自命题作文 " \
         f"- 我需要你以一个老师的角色来批阅这篇作文{question} " \
-        "- 完成三个任务，第一个是为这篇作文打分（满分为60），第二个是生成对这篇作文的评语，评语既要有肯定好的地方也要支出不足，第三个是推荐作文想提高可以参照的知识点 " \
+        "- 完成五个任务，第一个是打分（满分为60），第二个是生成评语，评语既要肯定好的地方也要指出不足，第三个是润色一些语句（给出原句和润色后），第四个是推荐作文想提高可以参照的知识点，第五个是根据这些知识点推荐网课 " \
         "- 推荐作文想提高可以参照的知识点部分，比如说如果修辞手法不够，就推荐修辞手法；文章结构不清晰，就推荐文章结构；没有语言风格，就推荐语言风格  " \
         "- The output is just pure JSON format, with no other descriptions." \
         "- Please strictly answer according to the following statements, without extra words. " \
-        "- 示例json文件如下，参考它的格式：[{\"基于文心大模型的打分是\": \"\", \"本文的评语是\":\"\", \"本文想提高可以参照的知识点是\" : \"\"},] " \
+        "- 示例json文件如下，参考格式：[{\"基于文心大模型的打分\": \"\", \"评语\":\"\", \"润色的语句\":\"\",\"可以参照的知识点\": \"\", \"推荐的网课\":\"\",},] "\
         "- 评语在100个中文汉字左右。 " \
         "- 推荐作文想提高可以参照的知识点个数在3-5个"
     # 构建对话消息
@@ -47,10 +45,8 @@ def ask():
     )
     # 获取文心一言的回答
     answer = response.result
-    #这里已经获取到了
-    print(answer)
 
-    '''# 解析json
+    # 解析json
     try:
         json_start = answer.find("[")
         json_end = answer.rfind("]")
@@ -59,19 +55,9 @@ def ask():
             answer_dict = json.loads(json_content)
         else:
             answer_dict = {}
+            # 使用json.dumps进行漂亮的打印
+            print(json.dumps(answer_dict, indent=2, ensure_ascii=False))
     except json.JSONDecodeError:
-        answer_dict = {}
-    '''
-    # 解析 JSON
-    try:
-
-        answer_dict = json.loads(answer)
-    except json.JSONDecodeError as e:
-        print(f"JSON 解析错误: {e}")
-        answer_dict = {}
-
-    # 确保 answer_dict 至少是一个字典
-    if not isinstance(answer_dict, dict):
         answer_dict = {}
 
     # 打印解析后的字典
