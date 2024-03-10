@@ -6,7 +6,7 @@ import json
 #     return render(request, 'index.html')
 
 #如果只针对想要调用文心一言的话，不需要使用Django包（这个是用来搭后端的，调用不需要用到）
-#这个ask方法是可以正常用了，已经调用成功获取到结果了，不过json解析那里有点问题，
+
 def ask():
 
     # 从txt文件中读取内容
