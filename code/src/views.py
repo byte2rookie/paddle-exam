@@ -53,15 +53,15 @@ def ask():
         if json_start != -1 and json_end != -1:
             json_content = answer[json_start:json_end+1]
             answer_dict = json.loads(json_content)
-        else:
-            answer_dict = {}
             # 使用json.dumps进行漂亮的打印
             print(json.dumps(answer_dict, indent=2, ensure_ascii=False))
+        else:
+            answer_dict = {}
+            print("未找到合法的JSON内容。")
     except json.JSONDecodeError:
         answer_dict = {}
+        print("解析JSON时发生错误。")
 
-    # 打印解析后的字典
-    print(answer_dict)
 
 if __name__=="__main__":
     ask()
